@@ -1,0 +1,10 @@
+CREATE ROLE soporte NOLOGIN;
+
+CREATE VIEW v_clientes_soporte AS SELECT
+id,  nombre,CONCAT( LEFT(correo, 2),  '*****',  
+SUBSTRING(correo FROM POSITION('@' IN correo))) 
+AS correo,CONCAT('******',RIGHT(telefono,4)) AS telefono,
+CONCAT( '*********',RIGHT(rfc, 4)) AS rfc FROM clientes;
+
+Consultar la vista:
+SELECT * FROM v_clientes_soporte;
